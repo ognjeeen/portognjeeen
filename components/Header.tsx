@@ -15,7 +15,7 @@ const Header = () => {
             <img src={me.imageSrc} alt="" className="rounded-3xl" />
           </div>
           <div className="text-center mt-4">
-            <p className="text-3xl text-primaryLight font-semibold tracking-wide">
+            <p className="text-3xl text-primaryColor font-semibold tracking-wide">
               {me.name}
               <br />
               <span className="font-normal">{me.position}</span>

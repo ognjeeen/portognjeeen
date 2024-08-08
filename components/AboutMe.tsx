@@ -1,7 +1,7 @@
 const AboutMe = () => {
   return (
     <section className="p-6 w-full md:w-2/5">
-      <p className="font-bold text-2xl text-primaryLight mb-4">AboutMe</p>
+      <p className="font-bold text-2xl text-primaryColor mb-4">AboutMe</p>
       <div>
         <div className="flex flex-col gap-2 text-textColor text-lg">
           <p>
@@ -13,8 +13,8 @@ const AboutMe = () => {
             After successfully completing my master's degree, I actively
             dedicated myself to learning new technologies and improving my
             knowledge. One of my favorite projects is{' '}
-            <span className="text-primaryLight font-semibold">Movie Twist</span>
-            , which at one point counted over a thousand users who tried the
+            <span className="text-primaryColor font-bold">Movie Twist</span>,
+            which at one point counted over a thousand users who tried the
             application on a monthly basis.
           </p>
           <p>

@@ -25,8 +25,8 @@ const education = [
 
 const Education = () => {
   return (
-    <section className="p-6 bg-gray-100 w-full md:w-2/5">
-      <p className="text-2xl font-bold mb-6 text-primaryLight">Education</p>
+    <section className="p-6 w-full md:w-2/5">
+      <p className="text-2xl font-bold mb-6 text-primaryColor">Education</p>
       <div>
         <Timeline>
           {education.map((item, index) => (
@@ -34,25 +34,25 @@ const Education = () => {
               <Timeline.Point />
 
               <Timeline.Content>
-                <Timeline.Time className="text-lg font-semibold text-educationTitleColor">
+                <Timeline.Time className="font-semibold text-primaryColor">
                   {item.date}
                 </Timeline.Time>
 
-                <TimelineTitle className="text-2xl font-bold text-educationTitleColor uppercase mt-2">
+                <TimelineTitle className="text-xl font-bold text-primaryColor uppercase mt-2">
                   {item.title}
                 </TimelineTitle>
 
                 {item.school && (
-                  <Timeline.Body className="text-lg text-textColor">
+                  <Timeline.Body className="text-textColor">
                     {item.school}
                   </Timeline.Body>
                 )}
 
                 {item.technologies && (
-                  <Timeline.Body className="text-lg text-textColor">
+                  <Timeline.Body className="text-textColor">
                     <span className="flex">{item.type}</span>
                     Technologies used:{' '}
-                    <span className="font-semibold text-primaryLight">
+                    <span className="font-bold text-primaryColor">
                       {item.technologies}
                     </span>
                   </Timeline.Body>

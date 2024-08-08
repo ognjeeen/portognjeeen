@@ -11,12 +11,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#F5F4F1',
-        primary: '#C59658',
-        primaryLight: '#e1ab65',
-        buttonHover: '#b1874f',
+        background: '#F7F7F7',
+        primaryColor: '#000080',
         textColor: '#363636',
-        educationTitleColor: '#4B3110',
+        hoverColor: '#1591ea',
       },
     },
     fontFamily: {
