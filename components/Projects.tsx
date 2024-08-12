@@ -47,14 +47,14 @@ const projects = [
     description: `Connect Github with Discord and receive notification on every git commit.`,
     src: gitcord,
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
-    href: 'https://gitcord-sepia.vercel.app/',
+    href: 'https://github.com/ognjeeen/gitcord',
   },
 ];
 
 const Projects = () => {
   return (
-    <section className="w-full sm:w-4/5 md:w-3/5 lg:w-2/5 mx-auto space-y-4">
-      <p className="text-2xl font-bold mb-6 text-primaryColor">
+    <section className="w-full space-y-4">
+      <p className="text-2xl font-bold mb-6 text-primaryColor text-center md:text-left">
         Cool Projects I've Built
       </p>
       {projects.map((project, index) => (
@@ -75,7 +75,7 @@ const Projects = () => {
             </div>
 
             <div className="flex flex-col space-y-2 flex-grow">
-              <div className="flex space-x-5 items-center">
+              <div className="flex space-x-2 items-center">
                 <p className="text-primaryColor text-lg sm:text-xl font-bold">
                   {project.name}
                 </p>
@@ -83,9 +83,9 @@ const Projects = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth={1.5}
+                  strokeWidth={2.5}
                   stroke="currentColor"
-                  className="w-5 h-5 sm:group-hover:-translate-y-0.5 sm:group-hover:translate-x-0.5 transition-all duration-400 ease-in-out"
+                  className="w-5 h-5 sm:group-hover:-translate-y-0.5 sm:group-hover:translate-x-0.5 transition-all duration-400 ease-in-out text-primaryColor"
                 >
                   <path
                     strokeLinecap="round"

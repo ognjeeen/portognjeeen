@@ -1,9 +1,9 @@
 const AboutMe = () => {
   return (
-    <section className="p-6 w-full md:w-2/5">
+    <section className="w-full">
       <p className="font-bold text-2xl text-primaryColor mb-4">AboutMe</p>
       <div>
-        <div className="flex flex-col gap-2 text-textColor text-lg">
+        <div className="flex flex-col gap-2 text-textColor text-base text-justify">
           <p>
             I was introduced to web development from a young age, started with
             building simple HTML web pages and made my progress all the way to

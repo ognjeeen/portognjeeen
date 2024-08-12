@@ -25,7 +25,7 @@ const education = [
 
 const Education = () => {
   return (
-    <section className="p-6 w-full md:w-2/5">
+    <section className="w-full">
       <p className="text-2xl font-bold mb-6 text-primaryColor">Education</p>
       <div>
         <Timeline>

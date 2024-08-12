@@ -8,17 +8,21 @@ const headerInfo = [
 
 const Header = () => {
   return (
-    <section className="w-full flex mt-10 ">
+    <section className="flex justify-center mb-10 md:mb-0 md:fixed">
       {headerInfo.map((me, index) => (
-        <div className="m-auto" key={index}>
-          <div className="justify-center flex">
-            <img src={me.imageSrc} alt="" className="rounded-3xl" />
+        <div key={index}>
+          <div>
+            <img
+              src={me.imageSrc}
+              alt="profile image"
+              className="rounded-3xl justify-center m-auto"
+            />
           </div>
-          <div className="text-center mt-4">
-            <p className="text-3xl text-primaryColor font-semibold tracking-wide">
+          <div className="mt-4 justify-center text-center">
+            <p className="text-xl md:text-3xl text-primaryColor font-semibold tracking-wide">
               {me.name}
               <br />
-              <span className="font-normal">{me.position}</span>
+              <span className="text-xl font-normal">{me.position}</span>
             </p>
           </div>
         </div>
