@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import propertyPulse from '../public/projects/propertyPulse/propertyPulse.png';
-import movieTwist from '../public/projects/propertyPulse/movieTwist.png';
-import jokeis from '../public/projects/propertyPulse/jokeis.png';
-import gitcord from '../public/projects/propertyPulse/gitcord.png';
+import gitcord from '../public/projects/gitcord.png';
+import jokeis from '../public/projects/jokeis.png';
+import movieTwist from '../public/projects/movieTwist.png';
+import propertyPulse from '../public/projects/propertyPulse.png';
 
 const projects = [
   {
@@ -53,7 +53,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section className="w-full space-y-4">
+    <section className="space-y-4">
       <p className="text-2xl font-bold mb-6 text-primaryColor text-center md:text-left">
         Cool Projects I've Built
       </p>

@@ -1,8 +1,10 @@
+import Socials from './Socials';
+
 const AboutMe = () => {
   return (
     <section className="w-full">
       <p className="font-bold text-2xl text-primaryColor mb-4">AboutMe</p>
-      <div>
+      <div className="space-y-5">
         <div className="flex flex-col gap-2 text-textColor text-base text-justify">
           <p>
             I was introduced to web development from a young age, started with
@@ -22,6 +24,7 @@ const AboutMe = () => {
             fan. In short, just happy to be here and do what I love!
           </p>
         </div>
+        <Socials />
       </div>
     </section>
   );
