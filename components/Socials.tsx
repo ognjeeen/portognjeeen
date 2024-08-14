@@ -28,7 +28,7 @@ const Socials = () => {
       {socials.map((social, index) => (
         <li key={index}>
           <Link href={social.link}>
-            <social.icon className="size-8 text-primaryColor hover:text-hoverColor/40" />
+            <social.icon className="size-6 md:size-8 text-primaryColor hover:text-hoverColor/40" />
           </Link>
         </li>
       ))}

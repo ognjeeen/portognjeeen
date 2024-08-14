@@ -5,7 +5,7 @@ const AboutMe = () => {
     <section className="w-full">
       <p className="font-bold text-2xl text-primaryColor mb-4">AboutMe</p>
       <div className="space-y-5">
-        <div className="flex flex-col gap-2 text-textColor text-base text-justify">
+        <div className="flex flex-col gap-2 text-textColor text-base">
           <p>
             I was introduced to web development from a young age, started with
             building simple HTML web pages and made my progress all the way to
@@ -24,7 +24,6 @@ const AboutMe = () => {
             fan. In short, just happy to be here and do what I love!
           </p>
         </div>
-        <Socials />
       </div>
     </section>
   );
