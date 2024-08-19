@@ -13,7 +13,7 @@ const socials = [
   {
     name: 'LinkedIn',
     icon: FaLinkedin,
-    link: 'https://www.linkedin.com/in/ognjen-marinkovi%C4%87-a51722216/',
+    link: 'www.linkedin.com/in/ognjeeen',
   },
   {
     name: 'Mail',
@@ -28,7 +28,7 @@ const Socials = () => {
       {socials.map((social, index) => (
         <li key={index}>
           <Link href={social.link}>
-            <social.icon className="size-6 md:size-8 text-primaryColor hover:text-hoverColor/40" />
+            <social.icon className="size-5 md:size-7 text-primaryColor hover:text-hoverColor/40" />
           </Link>
         </li>
       ))}

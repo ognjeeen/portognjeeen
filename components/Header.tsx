@@ -1,8 +1,10 @@
+import Image from 'next/image';
+import profilePicture from '../public/profilePicture.jpeg';
 import Socials from './Socials';
 
 const headerInfo = [
   {
-    imageSrc: 'https://placehold.co/300x300',
+    imageSrc: profilePicture,
     name: 'Ognjen Marinković',
     position: 'Front-End Web Developer',
   },
@@ -14,10 +16,11 @@ const Header = () => {
       {headerInfo.map((me, index) => (
         <div key={index} className="space-y-10 relative">
           <div>
-            <img
+            <Image
               src={me.imageSrc}
+              width={250}
               alt="profile image"
-              className="rounded-3xl "
+              className="rounded-3xl w-52 md:w-full"
             />
           </div>
           <div className="mt-4 justify-center">

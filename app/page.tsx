@@ -11,7 +11,7 @@ export default function Home() {
         <div className="md:w-1/3 w-full mr-10">
           <Header />
         </div>
-        <div className="md:w-2/3 w-full space-y-20">
+        <div className="md:w-2/3 w-full space-y-16 md:space-y-28">
           <AboutMe />
           <Education />
           <Projects />

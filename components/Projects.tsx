@@ -54,7 +54,7 @@ const projects = [
 const Projects = () => {
   return (
     <section className="space-y-4">
-      <p className="text-2xl font-bold mb-6 text-primaryColor text-center md:text-left">
+      <p className="text-2xl font-bold mb-6 text-primaryColor">
         Cool Projects I've Built
       </p>
       {projects.map((project, index) => (

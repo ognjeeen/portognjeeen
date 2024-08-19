@@ -1,4 +1,4 @@
-import Socials from './Socials';
+import Link from 'next/link';
 
 const AboutMe = () => {
   return (
@@ -22,6 +22,13 @@ const AboutMe = () => {
           <p>
             Also I am a big movie lover and book lover. Formula 1 and MotoGP
             fan. In short, just happy to be here and do what I love!
+          </p>
+          <p>
+            You can check my resume{' '}
+            <Link href="/resume.pdf" className="text-primaryColor font-bold">
+              here
+            </Link>
+            .
           </p>
         </div>
       </div>
