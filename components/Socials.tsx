@@ -13,7 +13,7 @@ const socials = [
   {
     name: 'LinkedIn',
     icon: FaLinkedin,
-    link: 'www.linkedin.com/in/ognjeeen',
+    link: 'https://linkedin.com/in/ognjeeen',
   },
   {
     name: 'Mail',
