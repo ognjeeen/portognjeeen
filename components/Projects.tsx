@@ -3,6 +3,7 @@ import gitcord from '../public/projects/gitcord.png';
 import jokeis from '../public/projects/jokeis.png';
 import movieTwist from '../public/projects/movieTwist.png';
 import propertyPulse from '../public/projects/propertyPulse.png';
+import toExpressDo from '../public/projects/toExpressDo.jpeg';
 
 const projects = [
   {
@@ -48,6 +49,13 @@ const projects = [
     src: gitcord,
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
     href: 'https://github.com/ognjeeen/gitcord',
+  },
+  {
+    name: 'to-express-do API App',
+    description: `User CRUD API application created using Express.js with Passport.js GitHub authentication.`,
+    src: toExpressDo,
+    technologies: ['Express.js', 'Passport.js'],
+    href: 'https://github.com/ognjeeen/to-express-do',
   },
 ];
 
