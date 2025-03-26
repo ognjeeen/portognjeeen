@@ -12,7 +12,7 @@ const projects = [
       'Movie Twist is an application built using Next.js with TailwindCSS and TypeScript. Movie Twist helps you decide what movie you should watch from your provided list of selected movies.',
     src: movieTwist,
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
-    href: 'https://movie-twist.vercel.app/',
+    href: 'https://movie-twist.com/',
   },
   {
     name: 'PropertyPulse App',
