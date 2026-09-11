@@ -5,16 +5,12 @@ import Projects from '@/components/Projects';
 
 export default function Home() {
   return (
-    <main className="font-Inter min-h-screen flex justify-center items-center">
-      <div className="w-full mt-10 p-4 md:flex md:max-w-5xl md:mt-16">
-        <div className="md:w-1/3 w-full mr-10">
-          <Header />
-        </div>
-        <div className="md:w-2/3 w-full space-y-16 md:space-y-28">
-          <AboutMe />
-          <Education />
-          <Projects />
-        </div>
+    <main className="mx-auto grid min-h-screen w-full max-w-5xl gap-16 px-4 py-14 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 md:py-20">
+      <Header />
+      <div className="min-w-0 space-y-16 md:space-y-28">
+        <AboutMe />
+        <Education />
+        <Projects />
       </div>
     </main>
   );

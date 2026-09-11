@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ThemeInit } from '../.flowbite-react/init';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({ subsets: ['latin', 'latin-ext'] });
 
 export const metadata: Metadata = {
   title: 'portognjeeen',
@@ -16,11 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} bg-background`}>
-      <body className={inter.className}>
-        <ThemeInit />
-        {children}
-      </body>
+    <html lang="en" className="bg-background">
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

@@ -1,7 +1,4 @@
 @import 'tailwindcss';
-@import 'flowbite-react/plugin/tailwindcss';
-
-@source '../.flowbite-react/class-list.json';
 
 @theme {
   --color-background: #fdfdfd;
@@ -10,6 +7,13 @@
   --color-hoverColor: #1591ea;
 }
 
-@theme inline {
-  --font-Inter: var(--font-inter), sans-serif;
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-primaryColor);
+    outline-offset: 4px;
+  }
 }

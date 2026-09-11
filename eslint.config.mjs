@@ -7,7 +7,6 @@ export default defineConfig([
   ...nextTypeScript,
   globalIgnores([
     '.next/**',
-    '.flowbite-react/init.tsx',
     'out/**',
     'build/**',
     'next-env.d.ts',
