@@ -1,6 +1,14 @@
 'use client';
 
-import { Timeline, TimelineTitle } from 'flowbite-react';
+import {
+  Timeline,
+  TimelineBody,
+  TimelineContent,
+  TimelineItem,
+  TimelinePoint,
+  TimelineTime,
+  TimelineTitle,
+} from 'flowbite-react';
 
 const education = [
   {
@@ -30,35 +38,35 @@ const Education = () => {
       <div>
         <Timeline>
           {education.map((item, index) => (
-            <Timeline.Item key={index}>
-              <Timeline.Point />
+            <TimelineItem key={index}>
+              <TimelinePoint />
 
-              <Timeline.Content>
-                <Timeline.Time className="font-semibold text-primaryColor">
+              <TimelineContent>
+                <TimelineTime className="font-semibold text-primaryColor">
                   {item.date}
-                </Timeline.Time>
+                </TimelineTime>
 
                 <TimelineTitle className="text-xl font-bold text-primaryColor uppercase mt-2">
                   {item.title}
                 </TimelineTitle>
 
                 {item.school && (
-                  <Timeline.Body className="text-textColor">
+                  <TimelineBody className="text-textColor">
                     {item.school}
-                  </Timeline.Body>
+                  </TimelineBody>
                 )}
 
                 {item.technologies && (
-                  <Timeline.Body className="text-textColor">
+                  <TimelineBody className="text-textColor">
                     <span className="flex">{item.type}</span>
                     Technologies used:{' '}
                     <span className="font-bold text-primaryColor">
                       {item.technologies}
                     </span>
-                  </Timeline.Body>
+                  </TimelineBody>
                 )}
-              </Timeline.Content>
-            </Timeline.Item>
+              </TimelineContent>
+            </TimelineItem>
           ))}
         </Timeline>
       </div>

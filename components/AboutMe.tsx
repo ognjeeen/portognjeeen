@@ -12,7 +12,7 @@ const AboutMe = () => {
             newest web development technologies.
           </p>
           <p>
-            After successfully completing my master's degree, I actively
+            After successfully completing my master&apos;s degree, I actively
             dedicated myself to learning new technologies and improving my
             knowledge. One of my favorite projects is{' '}
             <span className="text-primaryColor font-bold">Movie Twist</span>,

@@ -1,5 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import 'tailwindcss';
+@import 'flowbite-react/plugin/tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@source '../.flowbite-react/class-list.json';
+
+@theme {
+  --color-background: #fdfdfd;
+  --color-primaryColor: #000080;
+  --color-textColor: #363636;
+  --color-hoverColor: #1591ea;
+}
+
+@theme inline {
+  --font-Inter: var(--font-inter), sans-serif;
+}

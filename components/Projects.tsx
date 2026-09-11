@@ -63,7 +63,7 @@ const Projects = () => {
   return (
     <section className="space-y-4">
       <p className="text-2xl font-bold mb-6 text-primaryColor">
-        Cool Projects I've Built
+        Cool Projects I&apos;ve Built
       </p>
       {projects.map((project, index) => (
         <a
@@ -74,7 +74,7 @@ const Projects = () => {
           className="block"
         >
           <div className="flex flex-col sm:flex-row gap-4 p-4 rounded-lg transition duration-150 ease-in sm:hover:bg-hoverColor/40 group">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <Image
                 src={project.src}
                 alt={project.name}
@@ -82,8 +82,8 @@ const Projects = () => {
               />
             </div>
 
-            <div className="flex flex-col space-y-2 flex-grow">
-              <div className="flex space-x-2 items-center">
+            <div className="flex flex-col gap-2 grow">
+              <div className="flex gap-2 items-center">
                 <p className="text-primaryColor text-lg sm:text-xl font-bold">
                   {project.name}
                 </p>
