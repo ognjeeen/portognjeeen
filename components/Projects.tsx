@@ -5,7 +5,7 @@ import jokeis from '@/public/projects/jokeis.png';
 import gitcord from '@/public/projects/gitcord.png';
 import toExpressDo from '@/public/projects/toExpressDo.jpeg';
 import movieTwist from '@/public/projects/movieTwist.png';
-import codexWidget from '@/public/projects/codexUsageWidget.png';
+import codexWidget from '@/public/projects/widget-native-4x.png';
 
 const archivedProjects = [
   {
@@ -114,7 +114,7 @@ export default function Projects() {
             <div className="widget-screen-crop">
             <Image className="project-preview-image" src={codexWidget}
               alt="Codex Usage Widget showing remaining subscription limits and reset times. Example screenshot."
-              sizes="(max-width: 650px) 90vw, (max-width: 1000px) 70vw, 1100px" />
+              unoptimized />
             </div>
             <figcaption><span>A small window into your workday.</span><span>Codex Usage Widget</span></figcaption>
           </figure>,

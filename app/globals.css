@@ -261,7 +261,7 @@ body { background: var(--paper); color: var(--ink); }
 .symbol-window { grid-area: 1 / 1; position: relative; overflow: hidden; pointer-events: none; z-index: 2; }
 .symbol-reveal { position: absolute; width: 36%; max-width: 310px; right: 6%; top: 50%; translate: 0 -50%; }
 .screening-symbol { width: 100%; color: #38273c; }
-.symbol-holes { fill: var(--poster-color); transition: fill 1.15s; }
+.symbol-holes { fill: var(--poster-color); }
 .symbol-widget-lines { stroke: var(--poster-color); }
 .screening-view { display: flex; align-items: center; gap: 10px; padding: 12px 14px; margin-top: 22px; min-height: 44px; border: none; background: none; font-size: var(--text-small); text-align: left; cursor: pointer; color: #e0cde7; }
 .screening-view svg { flex: none; width: 21px; height: 21px; }
@@ -273,8 +273,8 @@ body { background: var(--paper); color: var(--ink); }
 .app-preview figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 15px 24px; font-size: var(--text-small); line-height: 1.5; background: #212629; position: relative; }
 .app-preview figcaption span:last-child { color: #bea8b8; }
 .widget-preview, .widget-preview figcaption { background: #303d43; }
-.widget-screen-crop { position: relative; width: min(94%, 390px); aspect-ratio: 1.4; align-self: center; justify-self: center; overflow: hidden; border-radius: 18px; }
-.widget-screen-crop .project-preview-image { position: absolute; width: 180%; max-width: none; height: auto; right: -7%; top: -7%; }
+.widget-screen-crop { position: relative; width: min(94%, 390px); aspect-ratio: 390 / 290; align-self: center; justify-self: center; }
+.widget-screen-crop .project-preview-image { width: 100%; height: auto; filter: drop-shadow(0 8px 14px #0003); }
 .archive-image { overflow: hidden; align-self: start; border-radius: 4px; }
 .experience-track { position: relative; padding-left: 27px; }
 .experience-rail { position: absolute; top: 5px; bottom: 25px; left: 0; width: 1px; background: var(--rule); }

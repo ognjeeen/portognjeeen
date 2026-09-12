@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import SmoothScroll from '@/components/SmoothScroll';
 import 'lenis/dist/lenis.css';
 import './globals.css';
+import './atmosphere.css';
 
 const dmSans = localFont({
   src: [

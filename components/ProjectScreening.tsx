@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode }
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScreeningSymbol from './ScreeningSymbol';
-import { getScreeningScene } from '@/lib/screening';
+import { getScreeningDistance, getScreeningScene, getScreeningTarget } from '@/lib/screening';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,7 +26,6 @@ export default function ProjectScreening({ projects }: { projects: ScreeningProj
   const frame = useRef<HTMLDivElement>(null);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const previewRef = useRef(false);
-  const previousProject = useRef(0);
   const selectedRef = useRef(0);
   const showPreview = useRef<(next: boolean) => void>(() => {});
   const chooseProject = useRef<(next: number) => void>(() => {});
@@ -49,7 +48,7 @@ export default function ProjectScreening({ projects }: { projects: ScreeningProj
     media.add({
       all: '(min-width: 0px)',
       motion: '(prefers-reduced-motion: no-preference)',
-      desktop: '(min-width: 1001px) and (min-height: 740px)',
+      desktop: '(min-width: 1001px)',
     }, (context) => {
       const { motion, desktop } = context.conditions!;
       const select = gsap.utils.selector(root);
@@ -78,8 +77,32 @@ export default function ProjectScreening({ projects }: { projects: ScreeningProj
 
       reveal.progress(previewRef.current ? 1 : 0);
 
+      const morph = gsap.timeline({ paused: true, defaults: { duration: 1, ease: 'none' } })
+        .fromTo(select('.symbol-orbit-a'),
+          { attr: { rx: 108, ry: 141 }, rotation: 48, transformOrigin: '50% 50%' },
+          { attr: { rx: 141, ry: 141 }, rotation: 0 }, 0)
+        .fromTo(select('.symbol-orbit-b'),
+          { attr: { rx: 108, ry: 141 }, rotation: -48, transformOrigin: '50% 50%' },
+          { attr: { rx: 115, ry: 115 }, rotation: 0 }, 0)
+        .fromTo(select('.symbol-core'),
+          { attr: { x: 78, y: 78, width: 154, height: 154, rx: 77 } },
+          { attr: { x: 117, y: 126, width: 76, height: 58, rx: 10 } }, 0)
+        .fromTo(select('.symbol-holes'),
+          { opacity: 1, scale: 1, fill: '#d2bce8', transformOrigin: '50% 50%' },
+          { opacity: 0, scale: 0.45, fill: '#c8cee3' }, 0)
+        .fromTo(select('.symbol-gauge'),
+          { opacity: 0, strokeDashoffset: 100 },
+          { opacity: 1, strokeDashoffset: 0 }, 0)
+        .fromTo(select('.symbol-widget-lines'), { opacity: 0 }, { opacity: 1, duration: 0.7 }, 0.3);
+
       const applyScene = (progress: number) => {
         const scene = getScreeningScene(progress, projects.length);
+        const transition = scene.transition;
+        const from = projects[transition?.from ?? scene.project].id === 'widget' ? 1 : 0;
+        const to = projects[transition?.to ?? scene.project].id === 'widget' ? 1 : 0;
+        const blend = transition ? (1 - Math.cos(Math.PI * transition.progress)) / 2 : 0;
+        morph.progress(from + (to - from) * blend);
+        gsap.set(select('.film-panel'), { opacity: transition ? Math.abs(2 * blend - 1) : 1 });
         if (selectedRef.current !== scene.project) {
           selectedRef.current = scene.project;
           setSelected(scene.project);
@@ -91,7 +114,7 @@ export default function ProjectScreening({ projects }: { projects: ScreeningProj
       const screening = ScrollTrigger.create({
         trigger: frame.current,
         start: () => `top ${Math.max(32, (window.innerHeight - frame.current!.offsetHeight) / 2)}px`,
-        end: () => `+=${Math.round(window.innerHeight * 2.2 * projects.length)}`,
+        end: () => `+=${Math.round(window.innerHeight * getScreeningDistance(projects.length))}`,
         pin: true,
         invalidateOnRefresh: true,
         onUpdate: (self) => applyScene(self.progress),
@@ -99,7 +122,7 @@ export default function ProjectScreening({ projects }: { projects: ScreeningProj
       });
 
       const seek = (project: number, app: boolean) => {
-        const progress = (project + (app ? 0.7 : 0.08)) / projects.length;
+        const progress = getScreeningTarget(project, app, projects.length);
         const top = screening.start + progress * (screening.end - screening.start);
         const request = new CustomEvent<number>('portfolio:scroll-to', { detail: top, cancelable: true });
         if (window.dispatchEvent(request)) {
@@ -127,42 +150,7 @@ export default function ProjectScreening({ projects }: { projects: ScreeningProj
     }, root);
 
     return () => media.revert();
-  }, [projects.length, viewportRevision]);
-
-  useLayoutEffect(() => {
-    const media = gsap.matchMedia();
-    const changed = previousProject.current !== selected;
-    const direction = selected > previousProject.current ? 1 : -1;
-    previousProject.current = selected;
-
-    media.add({ all: '(min-width: 0px)', motion: '(prefers-reduced-motion: no-preference)' }, (context) => {
-      const select = gsap.utils.selector(root);
-      const widget = projects[selected].id === 'widget';
-      const duration = changed && context.conditions?.motion ? 1.15 : 0;
-      const morph = gsap.timeline({ defaults: { duration, ease: 'power3.inOut' } });
-
-      morph
-        .to(select('.symbol-orbit-a'), { attr: { rx: widget ? 141 : 108, ry: 141 }, rotation: widget ? 0 : 48, transformOrigin: '50% 50%' }, 0)
-        .to(select('.symbol-orbit-b'), { attr: { rx: widget ? 115 : 108, ry: widget ? 115 : 141 }, rotation: widget ? 0 : -48, transformOrigin: '50% 50%' }, 0)
-        .to(select('.symbol-core'), { attr: widget ? { x: 117, y: 126, width: 76, height: 58, rx: 10 } : { x: 78, y: 78, width: 154, height: 154, rx: 77 } }, 0)
-        .to(select('.symbol-holes'), { opacity: widget ? 0 : 1, scale: widget ? 0.45 : 1, transformOrigin: '50% 50%' }, 0)
-        .to(select('.symbol-gauge'), { opacity: widget ? 1 : 0, strokeDashoffset: widget ? 0 : 100 }, 0)
-        .to(select('.symbol-widget-lines'), { opacity: widget ? 1 : 0 }, duration * 0.3);
-
-      if (duration) {
-        const panel = root.current?.querySelectorAll('.film-panel')[selected];
-        gsap.fromTo(panel?.querySelectorAll('.poster-title, .poster-tagline, .film-caption-copy') ?? [],
-          { x: 24 * direction, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power2.out', clearProps: 'transform,opacity' });
-        gsap.from(panel?.querySelectorAll('.project-preview-image') ?? [], {
-          opacity: 0, duration: 0.5, clearProps: 'opacity',
-        });
-      }
-    }, root);
-
-    // Preserve the current shape when another selection interrupts its transition.
-    return () => media.kill(false);
-  }, [selected, projects]);
+  }, [projects, viewportRevision]);
 
   function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next: number;
