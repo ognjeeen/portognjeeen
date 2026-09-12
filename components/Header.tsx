@@ -1,15 +1,20 @@
-import Socials from './Socials';
-
 export default function Header() {
   return (
-    <header className="mx-auto flex max-w-full flex-col gap-6 self-start md:sticky md:top-20 md:mx-0">
-      <div className="text-primaryColor">
-        <h1 className="text-3xl font-semibold tracking-wide">
-          Ognjen Marinković
-        </h1>
-        <p className="mt-1 text-xl">Front-End Web Developer</p>
-      </div>
-      <Socials />
+    <header className="site-header cinema-header wrap">
+      <a className="brand" href="#" aria-label="Ognjen Marinković, home">
+        <svg className="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="16" stroke="currentColor" />
+          <circle cx="20" cy="20" r="11" stroke="currentColor" />
+          <path d="m17 13 10 7-10 7V13Z" fill="currentColor" />
+        </svg>
+        <span>Ognjen Marinković</span>
+      </a>
+      <nav className="nav" aria-label="Main navigation">
+        <a href="#work">Work</a>
+        <a className="desktop-link" href="#about">About</a>
+        <a href="/resume.pdf">Resume</a>
+        <a className="desktop-link" href="mailto:contact.ognjen@gmail.com">Contact</a>
+      </nav>
     </header>
   );
 }

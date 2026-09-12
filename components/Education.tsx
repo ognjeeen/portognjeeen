@@ -36,42 +36,22 @@ const timeline = [
 
 export default function Education() {
   return (
-    <section aria-labelledby="education-heading">
-      <h2 id="education-heading" className="mb-6 text-2xl font-bold text-primaryColor">
-        Education &amp; experience
-      </h2>
-      <ol className="relative border-l border-gray-200">
+    <section className="cinema-experience wrap" id="experience" aria-labelledby="experience-title">
+      <h2 className="cinema-heading" id="experience-title">The backstory.</h2>
+      <ol className="experience-list">
         {timeline.map((item) => (
-          <li key={item.title} className="mb-10 ml-6 last:mb-0">
-            <span
-              aria-hidden="true"
-              className="absolute -left-1.5 mt-1.5 size-3 rounded-full border border-background bg-gray-200"
-            />
-            <p className="mb-1 text-sm font-semibold leading-none text-primaryColor">
+          <li className="experience-item" key={item.title}>
+            <p className="dates">
               <time dateTime={item.start.dateTime}>{item.start.label}</time>
-              {' - '}
-              {item.end ? (
-                <time dateTime={item.end.dateTime}>{item.end.label}</time>
-              ) : (
-                'Present'
-              )}
+              {' to '}
+              {item.end ? <time dateTime={item.end.dateTime}>{item.end.label}</time> : 'present'}
             </p>
-            <h3 className="mt-2 text-xl font-bold text-primaryColor uppercase">
-              {item.title}
-            </h3>
-            {item.school && <p className="text-textColor">{item.school}</p>}
-            {item.role && <p className="text-textColor">{item.role}</p>}
-            {item.description && (
-              <p className="mt-2 text-textColor">{item.description}</p>
-            )}
-            {item.technologies && (
-              <p className="text-textColor">
-                Technologies used:{' '}
-                <span className="font-bold text-primaryColor">
-                  {item.technologies}
-                </span>
-              </p>
-            )}
+            <div>
+              <h3>{item.role ? item.role + ', ' + item.title : item.title}</h3>
+              {item.school && <p>{item.school}</p>}
+              {item.description && <p>{item.description}</p>}
+              {item.technologies && <p className="tools">{item.technologies}</p>}
+            </div>
           </li>
         ))}
       </ol>

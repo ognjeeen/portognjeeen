@@ -1,17 +1,28 @@
 import AboutMe from '@/components/AboutMe';
 import Education from '@/components/Education';
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Projects from '@/components/Projects';
 
 export default function Home() {
   return (
-    <main className="mx-auto grid min-h-screen w-full max-w-5xl gap-16 px-4 py-14 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10 md:py-20">
+    <>
+      <a className="skip-link" href="#main">Skip to content</a>
       <Header />
-      <div className="min-w-0 space-y-16 md:space-y-28">
+      <main id="main" tabIndex={-1}>
+        <section className="cinema-hero wrap" aria-labelledby="cinema-title">
+          <h1 id="cinema-title">A developer<br />with a plot twist.</h1>
+          <p>
+            I&apos;m Ognjen, a frontend engineer who loves movies.<br />
+            I build for the web, the desktop, and my own curiosity.
+          </p>
+          <div className="hero-credit">Based in Novi Sad, Serbia</div>
+        </section>
+        <Projects />
         <AboutMe />
         <Education />
-        <Projects />
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

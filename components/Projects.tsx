@@ -1,150 +1,162 @@
 import Image from 'next/image';
-import codexUsageWidget from '@/public/projects/codexUsageWidget.png';
-import gitcord from '@/public/projects/gitcord.png';
-import jokeis from '@/public/projects/jokeis.png';
-import movieTwist from '@/public/projects/movieTwist.png';
+import ProjectScreening from './ProjectScreening';
 import propertyPulse from '@/public/projects/propertyPulse.png';
+import jokeis from '@/public/projects/jokeis.png';
+import gitcord from '@/public/projects/gitcord.png';
 import toExpressDo from '@/public/projects/toExpressDo.jpeg';
 
-const projects = [
+const archivedProjects = [
   {
-    name: 'Codex Usage Widget',
-    description:
-      'A small open-source Windows widget I built to keep track of Codex subscription usage without opening a browser. It shows remaining 5-hour and weekly limits, reset times, and live task activity on the desktop or taskbar. Built with C#, .NET, and WPF, it talks to the local Codex CLI. What started as something I made for myself ended up reaching a few hundred downloads! 😄',
-    src: codexUsageWidget,
-    technologies: ['C#', '.NET', 'WPF', 'JSON-RPC', 'Win32'],
-    href: 'https://codex-usage-widget.ognjen-marinkovic.chatgpt.site/',
-    archived: false,
-  },
-  {
-    name: 'MovieTwist App',
-    description:
-      'A Next.js application that helps you decide what to watch from your own selection of movies. Built with React, TypeScript, and Tailwind CSS, MovieTwist reached more than 1,000 users in a single month. It is one of my favorite personal projects, combining my interest in web development with my love of movies.',
-    src: movieTwist,
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
-    href: 'https://movie-twist.com/',
-    archived: false,
-  },
-  {
-    name: 'PropertyPulse App',
-    description:
-      'A rental property application built with Next.js and React, with MongoDB and Mongoose for data storage. It includes authentication and authorization, property search, and tools to create, view, edit, and delete listings. Users can browse properties to find their next rental and manage their own listings.',
-    src: propertyPulse,
-    technologies: [
-      'Next.js',
-      'React',
-      'Tailwind',
-      'MongoDB',
-      'Mongoose',
-      'NextAuth.js',
-    ],
+    name: 'PropertyPulse',
     href: 'https://property-pulse-jade.vercel.app/',
-    archived: true,
+    image: propertyPulse,
+    alt: 'PropertyPulse property search',
+    description: 'A rental application with property search, authentication, and listing management.',
+    technologies: ['Next.js', 'React', 'Tailwind', 'MongoDB', 'Mongoose', 'NextAuth.js'],
   },
   {
-    name: 'Jokeis App',
-    description:
-      'A social application for sharing jokes, with support for posting under your name or anonymously. Users can like and comment on jokes, browse profiles, and create, edit, or delete their own posts. Personal lists keep track of everything you have posted, including anonymous jokes, and the jokes you have liked.',
-    src: jokeis,
-    technologies: [
-      'Next.js',
-      'React',
-      'Tailwind',
-      'MongoDB',
-      'Mongoose',
-      'NextAuth.js',
-    ],
+    name: 'Jokeis',
     href: 'https://jokeis.vercel.app/',
-    archived: true,
+    image: jokeis,
+    alt: 'Jokeis joke sharing application',
+    description: 'Jokes, likes, and conversations. Post as yourself or stay anonymous.',
+    technologies: ['Next.js', 'React', 'Tailwind', 'MongoDB', 'Mongoose', 'NextAuth.js'],
   },
   {
-    name: 'GitCord App',
-    description:
-      'An integration project that connects GitHub with Discord and sends a notification for every commit. Built with Next.js, React, and TypeScript, it brings repository activity into Discord so people can follow development updates from their chat.',
-    src: gitcord,
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+    name: 'GitCord',
     href: 'https://github.com/ognjeeen/gitcord',
-    archived: true,
+    image: gitcord,
+    alt: 'GitCord integration project',
+    description: 'A GitHub and Discord integration that brings every commit into the conversation.',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
   },
   {
-    name: 'to-express-do API App',
-    description:
-      'A user management API built with Express.js, with endpoints for creating, reading, updating, and deleting users. It uses Passport.js for GitHub authentication and gave me a chance to work on backend development and authentication outside of my usual frontend projects.',
-    src: toExpressDo,
-    technologies: ['Express.js', 'Passport.js'],
+    name: 'to-express-do',
     href: 'https://github.com/ognjeeen/to-express-do',
-    archived: true,
+    image: toExpressDo,
+    alt: 'to-express-do API project',
+    description: 'A user management API and a chance to explore backend development with GitHub authentication.',
+    technologies: ['Express.js', 'Passport.js'],
   },
 ];
 
+function Technologies({ items }: { items: string[] }) {
+  return (
+    <ul className="project-meta" aria-label="Technologies">
+      {items.map((item) => <li key={item}>{item}</li>)}
+    </ul>
+  );
+}
+
+function MovieFeature() {
+  return (
+    <>
+      <div className="film-poster">
+        <div className="poster-copy">
+          <h2 className="poster-title">Movie<br />Twist</h2>
+          <p>Your movies.<br />A little help choosing.</p>
+        </div>
+        <div className="film-symbol" aria-hidden="true">
+          <div className="orbit" />
+          <div className="orbit" />
+          <div className="reel">
+            <svg viewBox="0 0 100 100" fill="currentColor">
+              <circle cx="50" cy="50" r="6" />
+              <circle cx="50" cy="24" r="13" />
+              <circle cx="76" cy="50" r="13" />
+              <circle cx="50" cy="76" r="13" />
+              <circle cx="24" cy="50" r="13" />
+            </svg>
+          </div>
+        </div>
+        <span className="poster-foot">A project by Ognjen Marinković</span>
+      </div>
+      <div className="film-caption">
+        <div>
+          <p>
+            A Next.js app that picks what to watch from your own movie selection.
+            More than 1,000 people tried it in a single month.
+          </p>
+          <Technologies items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS']} />
+        </div>
+        <a className="button cinema-button" href="https://movie-twist.com/" target="_blank" rel="noopener noreferrer">
+          Visit MovieTwist
+        </a>
+      </div>
+    </>
+  );
+}
+
+function WidgetFeature() {
+  return (
+    <>
+      <div className="film-poster widget-poster">
+        <div className="poster-copy">
+          <h2 className="poster-title">Codex<br />Usage<br />Widget</h2>
+          <p>Usage limits.<br />On your desktop.</p>
+        </div>
+        <div className="usage-symbol" aria-hidden="true">
+          <svg viewBox="0 0 310 310" fill="none">
+            <circle cx="155" cy="155" r="141" stroke="currentColor" strokeOpacity=".3" />
+            <circle cx="155" cy="155" r="115" stroke="currentColor" strokeOpacity=".15" strokeWidth="13" />
+            <circle cx="155" cy="155" r="115" stroke="currentColor" strokeWidth="13" strokeLinecap="round" pathLength="100" strokeDasharray="74 100" transform="rotate(-90 155 155)" />
+            <circle cx="155" cy="155" r="87" stroke="currentColor" strokeOpacity=".15" strokeWidth="9" />
+            <circle cx="155" cy="155" r="87" stroke="currentColor" strokeWidth="9" strokeLinecap="round" pathLength="100" strokeDasharray="42 100" transform="rotate(-90 155 155)" />
+            <rect x="117" y="126" width="76" height="58" rx="10" fill="currentColor" />
+            <path d="M134 143h42m-42 12h30m-30 12h17" stroke="#c8cee3" strokeWidth="4" strokeLinecap="round" />
+          </svg>
+        </div>
+        <span className="poster-foot">A project by Ognjen Marinković</span>
+      </div>
+      <div className="film-caption">
+        <div>
+          <p>
+            An open-source Windows widget for subscription limits, reset times, and
+            live task activity. Built for myself, then downloaded a few hundred times.
+          </p>
+          <Technologies items={['C#', '.NET', 'WPF', 'JSON-RPC', 'Win32']} />
+        </div>
+        <a
+          className="button cinema-button"
+          href="https://codex-usage-widget.ognjen-marinkovic.chatgpt.site/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Explore the widget
+        </a>
+      </div>
+    </>
+  );
+}
+
 export default function Projects() {
   return (
-    <section aria-labelledby="projects-heading">
-      <h2 id="projects-heading" className="mb-6 text-2xl font-bold text-primaryColor">
-        Projects
-      </h2>
-      <ul className="space-y-4">
-        {projects.map((project) => (
-          <li key={project.href}>
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.name}${project.archived ? ' (archived)' : ''} (opens in a new tab)`}
-              className="group flex flex-col gap-4 rounded-lg p-4 transition-colors duration-150 hover:bg-hoverColor/40 focus-visible:bg-hoverColor/40 motion-reduce:transition-none sm:flex-row"
-            >
-              <div className="shrink-0">
-                <Image
-                  src={project.src}
-                  alt=""
-                  sizes="(min-width: 640px) 192px, calc(100vw - 64px)"
-                  className="h-auto w-full rounded-lg border border-primaryColor sm:w-48"
-                />
+    <>
+      <ProjectScreening projects={[
+        { id: 'movie', name: 'MovieTwist', subtitle: "A film lover's side project", content: <MovieFeature /> },
+        { id: 'widget', name: 'Codex widget', subtitle: 'A tool for the everyday', content: <WidgetFeature /> },
+      ]} />
+      <section className="cinema-archive wrap" aria-labelledby="archive-title">
+        <div className="section-heading">
+          <h2 className="cinema-heading" id="archive-title">The earlier work.</h2>
+          <p>Four archived projects, each a different experiment.</p>
+        </div>
+        <div className="archive-list">
+          {archivedProjects.map((project) => (
+            <article className="archive-item" key={project.href}>
+              <Image src={project.image} alt={project.alt} sizes="(max-width: 650px) 76px, 88px" />
+              <div>
+                <a className="archive-title" href={project.href} target="_blank" rel="noopener noreferrer">
+                  <h3>{project.name}</h3>
+                  <span className="archive-badge">Archived</span>
+                </a>
+                <p>{project.description}</p>
+                <Technologies items={project.technologies} />
               </div>
-              <div className="flex min-w-0 grow flex-col gap-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-lg font-bold text-primaryColor sm:text-xl">
-                    {project.name}
-                  </h3>
-                  {project.archived && (
-                    <span className="rounded-full border border-primaryColor/20 bg-primaryColor/5 px-2 py-0.5 text-xs font-medium text-primaryColor transition-colors duration-150 group-hover:border-primaryColor/30 group-hover:bg-primaryColor/10 group-focus-visible:border-primaryColor/30 group-focus-visible:bg-primaryColor/10 motion-reduce:transition-none">
-                      Archived
-                    </span>
-                  )}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2.5}
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    className="size-5 shrink-0 text-primaryColor transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-                    />
-                  </svg>
-                </div>
-                <p className="text-sm text-textColor sm:text-base">
-                  {project.description}
-                </p>
-                <ul className="flex flex-wrap gap-1">
-                  {project.technologies.map((technology) => (
-                    <li
-                      key={technology}
-                      className="rounded-full bg-primaryColor px-3 py-1 text-xs text-white sm:text-sm"
-                    >
-                      {technology}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

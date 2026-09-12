@@ -1,6 +1,6 @@
 # portognjeeen
 
-Ognjen Marinković's portfolio, built with Next.js, React, TypeScript, and Tailwind CSS.
+Ognjen Marinković's portfolio, built with Next.js, React, TypeScript, and CSS. The main page uses the selected Screening room design.
 
 Visit [the portfolio](https://portognjeeen.vercel.app/).
 
@@ -21,21 +21,23 @@ Open http://localhost:3000. On Windows with nvm-windows, select the installed ru
 npm run check
 ```
 
-This runs ESLint, generates Next.js route types, checks TypeScript, and builds the production app. Use `npm start` to serve that build. Building downloads Inter through `next/font`, so it needs access to Google Fonts when the font is not cached.
+This runs ESLint, generates Next.js route types, checks TypeScript, and builds the production app. Use `npm start` to serve that build. DM Sans and Instrument Serif are local files loaded through `next/font/local`; builds do not download fonts.
 
 The `allowScripts` entry permits `unrs-resolver@1.12.2` to prepare its native binary for ESLint. When updating that package, review its install script and update the entry with `npm install-scripts approve unrs-resolver`.
 
 ## Editing the portfolio
 
-- `components/Header.tsx` and `components/Socials.tsx` contain the profile and contact links.
+- `components/Header.tsx`, `components/Footer.tsx`, and `components/Socials.tsx` contain the profile and contact links.
 - `components/AboutMe.tsx` contains the introduction and resume link.
-- `components/Education.tsx` contains work experience and education in reverse start-date order. Its timeline uses an ordered list, HTML dates, and Tailwind styles. Set an entry's `end` to `null` for a current role.
+- `components/Education.tsx` contains work experience and education in reverse start-date order. Its timeline uses an ordered list and HTML dates. Set an entry's `end` to `null` for a current role.
 - `components/Projects.tsx` contains project descriptions, screenshots, technologies, and links.
-- Each project's `archived` field controls its Archived badge. These flags reflect GitHub status checked on September 12, 2026; update them when archiving or restoring a repository.
+- The `archivedProjects` array contains the four projects shown with Archived badges. Their status was checked on September 12, 2026; update the list when archiving or restoring a repository.
+- `components/ProjectScreening.tsx` controls the featured project tabs. Click a tab or use arrow keys, Home, and End. Panel content comes from the server-rendered `Projects` component.
 - `public/resume.pdf` is the downloadable resume. Project images are in `public/projects`.
-- `app/globals.css` defines the portfolio colors, light color scheme, and keyboard focus style.
+- `app/globals.css` defines the Screening palette, responsive layout, and keyboard focus styles. The accepted typography uses Instrument Serif for display headings and DM Sans for project navigation and body text.
+- `app/fonts` contains the font files and their licenses. `app/layout.tsx` loads the fonts and defines page metadata. `app/icon.svg` is the source for the portfolio favicon.
 
-Portfolio components render on the server. The timeline needs no JavaScript or UI library. `react-icons` supplies the social icons, and Next.js optimizes images through Sharp.
+The project selector is the only client component. The rest of the portfolio and both project panels render on the server. Both panels share grid row heights so switching projects does not move the content below them. Next.js optimizes project screenshots through Sharp.
 
 ## Dependencies
 

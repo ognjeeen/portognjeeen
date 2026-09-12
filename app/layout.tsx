@@ -1,22 +1,41 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin', 'latin-ext'] });
+const dmSans = localFont({
+  src: [
+    { path: './fonts/dm-sans-0.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/dm-sans-1.ttf', weight: '500', style: 'normal' },
+    { path: './fonts/dm-sans-2.ttf', weight: '600', style: 'normal' },
+  ],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const instrumentSerif = localFont({
+  src: './fonts/instrument-serif-0.ttf',
+  weight: '400',
+  style: 'normal',
+  variable: '--font-display',
+  display: 'swap',
+  fallback: ['Georgia', 'serif'],
+});
 
 export const metadata: Metadata = {
-  title: 'portognjeeen',
-  description: `Welcome to Ognjen's portfolio!`,
+  title: 'Ognjen Marinković | Frontend Engineer',
+  description:
+    'Frontend engineer in Novi Sad, Serbia. Explore MovieTwist, Codex Usage Widget, and my work with React and TypeScript.',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: '#271b2c',
+  colorScheme: 'dark',
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="bg-background">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${dmSans.variable} ${instrumentSerif.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
