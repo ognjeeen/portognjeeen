@@ -38,7 +38,9 @@ export default function Education() {
   return (
     <section className="cinema-experience wrap" id="experience" aria-labelledby="experience-title">
       <h2 className="cinema-heading" id="experience-title">The backstory.</h2>
-      <ol className="experience-list">
+      <div className="experience-track">
+        <div className="experience-rail" aria-hidden="true"><span className="experience-progress" /></div>
+        <ol className="experience-list">
         {timeline.map((item) => (
           <li className="experience-item" key={item.title}>
             <p className="dates">
@@ -55,6 +57,7 @@ export default function Education() {
           </li>
         ))}
       </ol>
+      </div>
     </section>
   );
 }

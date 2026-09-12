@@ -4,6 +4,8 @@ import propertyPulse from '@/public/projects/propertyPulse.png';
 import jokeis from '@/public/projects/jokeis.png';
 import gitcord from '@/public/projects/gitcord.png';
 import toExpressDo from '@/public/projects/toExpressDo.jpeg';
+import movieTwist from '@/public/projects/movieTwist.png';
+import codexWidget from '@/public/projects/codexUsageWidget.png';
 
 const archivedProjects = [
   {
@@ -48,83 +50,38 @@ function Technologies({ items }: { items: string[] }) {
   );
 }
 
-function MovieFeature() {
+function MovieCaption() {
   return (
     <>
-      <div className="film-poster">
-        <div className="poster-copy">
-          <h2 className="poster-title">Movie<br />Twist</h2>
-          <p>Your movies.<br />A little help choosing.</p>
-        </div>
-        <div className="film-symbol" aria-hidden="true">
-          <div className="orbit" />
-          <div className="orbit" />
-          <div className="reel">
-            <svg viewBox="0 0 100 100" fill="currentColor">
-              <circle cx="50" cy="50" r="6" />
-              <circle cx="50" cy="24" r="13" />
-              <circle cx="76" cy="50" r="13" />
-              <circle cx="50" cy="76" r="13" />
-              <circle cx="24" cy="50" r="13" />
-            </svg>
-          </div>
-        </div>
-        <span className="poster-foot">A project by Ognjen Marinković</span>
+      <div className="film-caption-copy">
+        <p>
+          A Next.js app that picks what to watch from your own movie selection.
+          More than 1,000 people tried it in a single month.
+        </p>
+        <Technologies items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS']} />
       </div>
-      <div className="film-caption">
-        <div>
-          <p>
-            A Next.js app that picks what to watch from your own movie selection.
-            More than 1,000 people tried it in a single month.
-          </p>
-          <Technologies items={['Next.js', 'React', 'TypeScript', 'Tailwind CSS']} />
-        </div>
-        <a className="button cinema-button" href="https://movie-twist.com/" target="_blank" rel="noopener noreferrer">
-          Visit MovieTwist
-        </a>
-      </div>
+      <a className="button cinema-button" href="https://movie-twist.com/" target="_blank" rel="noopener noreferrer">
+        Visit MovieTwist
+      </a>
     </>
   );
 }
 
-function WidgetFeature() {
+function WidgetCaption() {
   return (
     <>
-      <div className="film-poster widget-poster">
-        <div className="poster-copy">
-          <h2 className="poster-title">Codex<br />Usage<br />Widget</h2>
-          <p>Usage limits.<br />On your desktop.</p>
-        </div>
-        <div className="usage-symbol" aria-hidden="true">
-          <svg viewBox="0 0 310 310" fill="none">
-            <circle cx="155" cy="155" r="141" stroke="currentColor" strokeOpacity=".3" />
-            <circle cx="155" cy="155" r="115" stroke="currentColor" strokeOpacity=".15" strokeWidth="13" />
-            <circle cx="155" cy="155" r="115" stroke="currentColor" strokeWidth="13" strokeLinecap="round" pathLength="100" strokeDasharray="74 100" transform="rotate(-90 155 155)" />
-            <circle cx="155" cy="155" r="87" stroke="currentColor" strokeOpacity=".15" strokeWidth="9" />
-            <circle cx="155" cy="155" r="87" stroke="currentColor" strokeWidth="9" strokeLinecap="round" pathLength="100" strokeDasharray="42 100" transform="rotate(-90 155 155)" />
-            <rect x="117" y="126" width="76" height="58" rx="10" fill="currentColor" />
-            <path d="M134 143h42m-42 12h30m-30 12h17" stroke="#c8cee3" strokeWidth="4" strokeLinecap="round" />
-          </svg>
-        </div>
-        <span className="poster-foot">A project by Ognjen Marinković</span>
+      <div className="film-caption-copy">
+        <p>
+          An open-source Windows widget for subscription limits, reset times, and
+          live task activity. Built for myself, then downloaded a few hundred times.
+        </p>
+        <Technologies items={['C#', '.NET', 'WPF', 'JSON-RPC', 'Win32']} />
       </div>
-      <div className="film-caption">
-        <div>
-          <p>
-            An open-source Windows widget for subscription limits, reset times, and
-            live task activity. Built for myself, then downloaded a few hundred times.
-          </p>
-          <Technologies items={['C#', '.NET', 'WPF', 'JSON-RPC', 'Win32']} />
-        </div>
-        <a
-          className="button cinema-button"
-          href="https://codex-usage-widget.ognjen-marinkovic.chatgpt.site/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Explore the widget
-        </a>
-      </div>
+      <a className="button cinema-button"
+        href="https://codex-usage-widget.ognjen-marinkovic.chatgpt.site/"
+        target="_blank" rel="noopener noreferrer">
+        Explore the widget
+      </a>
     </>
   );
 }
@@ -133,8 +90,36 @@ export default function Projects() {
   return (
     <>
       <ProjectScreening projects={[
-        { id: 'movie', name: 'MovieTwist', subtitle: "A film lover's side project", content: <MovieFeature /> },
-        { id: 'widget', name: 'Codex widget', subtitle: 'A tool for the everyday', content: <WidgetFeature /> },
+        {
+          id: 'movie', name: 'MovieTwist', subtitle: "A film lover's side project",
+          poster: <>
+            <h2 className="poster-title">Movie<br />Twist</h2>
+            <p className="poster-tagline">Your movies.<br />A little help choosing.</p>
+          </>,
+          preview: <figure className="app-preview movie-preview">
+            <Image className="project-preview-image" src={movieTwist}
+              alt="MovieTwist movie search, with Interstellar in the search field."
+              sizes="(max-width: 650px) 90vw, (max-width: 1000px) 70vw, 1100px" />
+            <figcaption><span>Your watchlist. Tonight&apos;s decision.</span><span>MovieTwist</span></figcaption>
+          </figure>,
+          caption: <MovieCaption />,
+        },
+        {
+          id: 'widget', name: 'Codex widget', subtitle: 'A tool for the everyday',
+          poster: <>
+            <h2 className="poster-title">Codex<br />Usage<br />Widget</h2>
+            <p className="poster-tagline">Usage limits.<br />On your desktop.</p>
+          </>,
+          preview: <figure className="app-preview widget-preview">
+            <div className="widget-screen-crop">
+            <Image className="project-preview-image" src={codexWidget}
+              alt="Codex Usage Widget showing remaining subscription limits and reset times. Example screenshot."
+              sizes="(max-width: 650px) 90vw, (max-width: 1000px) 70vw, 1100px" />
+            </div>
+            <figcaption><span>A small window into your workday.</span><span>Codex Usage Widget</span></figcaption>
+          </figure>,
+          caption: <WidgetCaption />,
+        },
       ]} />
       <section className="cinema-archive wrap" aria-labelledby="archive-title">
         <div className="section-heading">
@@ -144,7 +129,7 @@ export default function Projects() {
         <div className="archive-list">
           {archivedProjects.map((project) => (
             <article className="archive-item" key={project.href}>
-              <Image src={project.image} alt={project.alt} sizes="(max-width: 650px) 76px, 88px" />
+              <div className="archive-image"><Image src={project.image} alt={project.alt} sizes="(max-width: 650px) 76px, 88px" /></div>
               <div>
                 <a className="archive-title" href={project.href} target="_blank" rel="noopener noreferrer">
                   <h3>{project.name}</h3>
