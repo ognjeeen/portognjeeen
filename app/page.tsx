@@ -1,32 +1,35 @@
 import AboutMe from '@/components/AboutMe';
+import CinemaMotion from '@/components/CinemaMotion';
 import Education from '@/components/Education';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import Letterboard from '@/components/Letterboard';
 import Projects from '@/components/Projects';
-import PortfolioMotion from '@/components/PortfolioMotion';
 
 export default function Home() {
   return (
-    <PortfolioMotion>
+    <>
       <a className="skip-link" href="#main">Skip to content</a>
+      <CinemaMotion />
       <Header />
       <main id="main" tabIndex={-1}>
-        <section className="cinema-hero wrap" aria-labelledby="cinema-title">
-          <h1 className="hero-title" id="cinema-title">
-            <span className="hero-line"><span>A developer</span></span>
-            <span className="hero-line"><span>with a plot twist.</span></span>
-          </h1>
-          <p className="hero-description">
-            I&apos;m Ognjen, a frontend engineer who loves movies.<br />
-            I build for the web, the desktop, and my own curiosity.
-          </p>
-          <div className="hero-credit">Based in Novi Sad, Serbia</div>
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="beam" aria-hidden="true" />
+          <div className="dust" aria-hidden="true" />
+          <div className="wrap">
+            <Letterboard as="h1" id="hero-title" className="board" lines={['A developer', 'with a plot twist.']} />
+            <p className="hero-copy reveal">
+              I&apos;m Ognjen, a frontend engineer who loves movies.<br />
+              I build for the web, the desktop, and my own curiosity.
+              <span className="hand">Based in Novi Sad, Serbia</span>
+            </p>
+          </div>
         </section>
         <Projects />
         <AboutMe />
         <Education />
       </main>
       <Footer />
-    </PortfolioMotion>
+    </>
   );
 }

@@ -1,19 +1,24 @@
 export default function Header() {
   return (
-    <header className="site-header cinema-header wrap">
+    <header className="site-header wrap">
       <a className="brand" href="#" aria-label="Ognjen Marinković, home">
-        <svg className="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <circle cx="20" cy="20" r="16" stroke="currentColor" />
-          <circle cx="20" cy="20" r="11" stroke="currentColor" />
-          <path d="m17 13 10 7-10 7V13Z" fill="currentColor" />
+        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="17" stroke="currentColor" />
+          <g fill="currentColor">
+            <circle cx="20" cy="10" r="4" />
+            <circle cx="20" cy="30" r="4" />
+            <circle cx="10" cy="20" r="4" />
+            <circle cx="30" cy="20" r="4" />
+            <circle cx="20" cy="20" r="1.6" />
+          </g>
         </svg>
         <span>Ognjen Marinković</span>
       </a>
       <nav className="nav" aria-label="Main navigation">
         <a href="#work">Work</a>
-        <a className="desktop-link" href="#about">About</a>
+        <a href="#about">About</a>
         <a href="/resume.pdf">Resume</a>
-        <a className="desktop-link" href="mailto:contact.ognjen@gmail.com">Contact</a>
+        <a href="mailto:contact.ognjen@gmail.com">Contact</a>
       </nav>
     </header>
   );

@@ -1,19 +1,37 @@
-import Socials from './Socials';
+import Letterboard from './Letterboard';
+
+const credits = [
+  { role: 'Written by', name: 'Ognjen Marinković' },
+  { role: 'Built by', name: 'Ognjen Marinković' },
+  { role: 'Maintained by', name: 'Ognjen Marinković' },
+  null,
+  { role: 'GitHub', name: 'github.com/ognjeeen', href: 'https://github.com/ognjeeen' },
+  { role: 'LinkedIn', name: 'linkedin.com/in/ognjeeen', href: 'https://linkedin.com/in/ognjeeen' },
+  { role: 'Resume', name: 'Resume PDF', href: '/resume.pdf' },
+  null,
+  { role: 'Filmed in', name: 'Novi Sad, Serbia' },
+];
 
 export default function Footer() {
   return (
-    <footer className="cinema-footer wrap" id="contact">
-      <svg className="end-mark" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-        <circle cx="40" cy="40" r="35" pathLength="100" stroke="currentColor" strokeDasharray="101" />
-        <circle cx="40" cy="40" r="26" pathLength="100" stroke="currentColor" strokeDasharray="101" />
-        <path d="m34 28 18 12-18 12V28Z" fill="currentColor" />
-      </svg>
-      <h2 className="footer-title-line"><span>What happens next?</span></h2>
+    <footer className="end-credits wrap" id="contact">
+      <Letterboard className="sign end-sign" lines={['What happens next?']} />
       <a className="contact-link" href="mailto:contact.ognjen@gmail.com">contact.ognjen@gmail.com</a>
-      <div className="footer-bottom">
-        <span>Ognjen Marinković / Thanks for watching.</span>
-        <Socials />
+      <div className="credits-window" tabIndex={0} aria-label="Credits">
+        <dl className="credits-roll">
+          {credits.map((credit, index) => credit ? (
+            <div key={index}>
+              <dt>{credit.role}</dt>
+              <dd>
+                {credit.href
+                  ? <a href={credit.href} {...(credit.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}>{credit.name}</a>
+                  : credit.name}
+              </dd>
+            </div>
+          ) : <div className="credits-gap" key={index} />)}
+        </dl>
       </div>
+      <p className="thanks">Ognjen Marinković / Thanks for watching.</p>
     </footer>
   );
 }

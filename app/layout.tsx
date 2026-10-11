@@ -1,27 +1,43 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
-import SmoothScroll from '@/components/SmoothScroll';
-import 'lenis/dist/lenis.css';
 import './globals.css';
-import './atmosphere.css';
 
-const dmSans = localFont({
+const tile = localFont({
   src: [
-    { path: './fonts/dm-sans-0.ttf', weight: '400', style: 'normal' },
-    { path: './fonts/dm-sans-1.ttf', weight: '500', style: 'normal' },
-    { path: './fonts/dm-sans-2.ttf', weight: '600', style: 'normal' },
+    { path: './fonts/barlow-condensed-500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/barlow-condensed-600.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/barlow-condensed-700.woff2', weight: '700', style: 'normal' },
   ],
+  variable: '--font-tile',
+  display: 'swap',
+  fallback: ['Arial Narrow', 'Arial', 'sans-serif'],
+});
+
+const body = localFont({
+  src: './fonts/libre-franklin-variable.woff2',
+  weight: '100 900',
+  style: 'normal',
   variable: '--font-body',
   display: 'swap',
 });
 
-const instrumentSerif = localFont({
-  src: './fonts/instrument-serif-0.ttf',
+const typewriter = localFont({
+  src: [
+    { path: './fonts/courier-prime-400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/courier-prime-700.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-type',
+  display: 'swap',
+  fallback: ['Courier New', 'Courier', 'monospace'],
+});
+
+const pencil = localFont({
+  src: './fonts/nanum-pen-script-400.woff2',
   weight: '400',
   style: 'normal',
-  variable: '--font-display',
+  variable: '--font-hand',
   display: 'swap',
-  fallback: ['Georgia', 'serif'],
+  fallback: ['Segoe Print', 'Bradley Hand', 'cursive'],
 });
 
 export const metadata: Metadata = {
@@ -37,9 +53,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${tile.variable} ${body.variable} ${typewriter.variable} ${pencil.variable}`}>
       <body>
-        <SmoothScroll />
         {children}
       </body>
     </html>
