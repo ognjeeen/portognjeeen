@@ -1,3 +1,6 @@
+import Letterboard from './Letterboard';
+import { COUNTER_DASH, counterTiles } from '@/lib/cinema';
+
 const timeline = [
   {
     title: 'THRIVEA',
@@ -34,20 +37,41 @@ const timeline = [
   },
 ];
 
+function counterYears(start: string, end: string | undefined) {
+  const first = Number(start.slice(0, 4));
+  const last = end ? Number(end.slice(0, 4)) : undefined;
+  return last === undefined || last === first ? [first] : [first, last];
+}
+
+// A footage counter: one dark tile per digit. CinemaMotion rolls the digits up
+// when the entry scrolls into view.
+function FootageCounter({ years, open }: { years: number[]; open: boolean }) {
+  return (
+    <div className="counter" aria-hidden="true" data-years={years.join(' ')} data-open={open || undefined}>
+      {counterTiles(years, open).map((tile, index) => tile === COUNTER_DASH
+        ? <span className="counter-dash" key={index} />
+        : <span className="counter-digit" key={index}>{tile}</span>)}
+    </div>
+  );
+}
+
 export default function Education() {
   return (
-    <section className="cinema-experience wrap" id="experience" aria-labelledby="experience-title">
-      <h2 className="cinema-heading" id="experience-title">The backstory.</h2>
-      <div className="experience-track">
-        <div className="experience-rail" aria-hidden="true"><span className="experience-progress" /></div>
-        <ol className="experience-list">
+    <section className="backstory wrap" id="experience" aria-labelledby="experience-title">
+      <div className="section-heading">
+        <Letterboard className="sign" id="experience-title" lines={['The backstory.']} />
+      </div>
+      <ol className="filmography">
         {timeline.map((item) => (
-          <li className="experience-item" key={item.title}>
-            <p className="dates">
-              <time dateTime={item.start.dateTime}>{item.start.label}</time>
-              {' to '}
-              {item.end ? <time dateTime={item.end.dateTime}>{item.end.label}</time> : 'present'}
-            </p>
+          <li className="filmography-item reveal" key={item.title}>
+            <div>
+              <FootageCounter years={counterYears(item.start.dateTime, item.end?.dateTime)} open={!item.end} />
+              <p className="dates">
+                <time dateTime={item.start.dateTime}>{item.start.label}</time>
+                {' to '}
+                {item.end ? <time dateTime={item.end.dateTime}>{item.end.label}</time> : 'present'}
+              </p>
+            </div>
             <div>
               <h3>{item.role ? item.role + ', ' + item.title : item.title}</h3>
               {item.school && <p>{item.school}</p>}
@@ -57,7 +81,6 @@ export default function Education() {
           </li>
         ))}
       </ol>
-      </div>
     </section>
   );
 }
