@@ -27,25 +27,41 @@ export default function CinemaMotion() {
     };
     root.classList.add('motion');
 
-    // Film grain, redrawn a few times per second.
+    // Film grain, redrawn a few times per second. The canvas follows the real
+    // device resolution so each grain stays about 1.5 physical pixels on any
+    // screen instead of being stretched on large or high-density displays.
     const canvas = grain.current;
     const context = canvas?.getContext('2d');
     if (canvas && context) {
-      const width = Math.ceil(window.innerWidth / 1.5);
-      const height = Math.ceil(window.innerHeight / 1.5);
-      canvas.width = width;
-      canvas.height = height;
-      const noise = context.createImageData(width, height);
+      const tiles = Array.from({ length: 4 }, () => {
+        const tile = document.createElement('canvas');
+        tile.width = tile.height = 256;
+        const tileContext = tile.getContext('2d');
+        if (!tileContext) return null;
+        const noise = tileContext.createImageData(256, 256);
+        for (let index = 0; index < noise.data.length; index += 4) {
+          const value = Math.random() * 255;
+          noise.data[index] = noise.data[index + 1] = noise.data[index + 2] = value;
+          noise.data[index + 3] = 255;
+        }
+        tileContext.putImageData(noise, 0, 0);
+        return context.createPattern(tile, 'repeat');
+      }).filter((pattern) => pattern !== null);
+      const resize = () => {
+        const scale = (window.devicePixelRatio || 1) / 1.5;
+        canvas.width = Math.ceil(window.innerWidth * scale);
+        canvas.height = Math.ceil(window.innerHeight * scale);
+      };
+      resize();
+      window.addEventListener('resize', resize);
+      cleanups.push(() => window.removeEventListener('resize', resize));
       let last = 0;
       const draw = (time: number) => {
-        if (time - last > 80) {
+        if (time - last > 80 && tiles.length) {
           last = time;
-          for (let index = 0; index < noise.data.length; index += 4) {
-            const value = Math.random() * 255;
-            noise.data[index] = noise.data[index + 1] = noise.data[index + 2] = value;
-            noise.data[index + 3] = 255;
-          }
-          context.putImageData(noise, 0, 0);
+          context.setTransform(1, 0, 0, 1, -Math.floor(random(0, 256)), -Math.floor(random(0, 256)));
+          context.fillStyle = tiles[Math.floor(random(0, tiles.length))];
+          context.fillRect(0, 0, canvas.width + 256, canvas.height + 256);
         }
         nextFrame(draw);
       };
